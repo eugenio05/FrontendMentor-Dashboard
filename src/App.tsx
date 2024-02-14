@@ -7,14 +7,14 @@ function App(): JSX.Element {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme: string | null = localStorage.getItem("theme");
     if (savedTheme) {
       setTheme(savedTheme);
     }
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme: string = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
@@ -32,7 +32,7 @@ function App(): JSX.Element {
           </p>
           <div className="flex items-center justify-between pt-6">
             <p className="text-dark-grayish-blue font-bold dark:text-desaturated-blue md:text-xl">
-              Dark Mode
+              {theme === "light" ? "Light Mode" : "Dark Mode"}
             </p>
             {theme === "dark" ? (
               <MdDarkMode
